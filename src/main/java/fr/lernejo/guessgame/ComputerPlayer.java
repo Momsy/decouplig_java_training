@@ -3,28 +3,31 @@ package fr.lernejo.guessgame;
 import fr.lernejo.logger.Logger;
 import fr.lernejo.logger.LoggerFactory;
 
-import java.util.Scanner;
-public class ComputerPlayer implements Player{
-    long min=0;
-    long max=100;
-    long mid;
-    Logger l = LoggerFactory.getLogger("player");
-    @Override
-    public long askNextGuess()
-    {
-        mid = (max + min) / 2;
-        return mid;
+public class ComputerPlayer implements Player {
+    private Logger logger = LoggerFactory.getLogger("player");
+    private int min;
+    private int max;
+    private int guess;
+
+    public ComputerPlayer() {
+        min=0;
+        max=100;
     }
     @Override
-    public void respond(boolean lowerOrGreater)
-    {
-        if (lowerOrGreater) {
-            l.log("Lower");
-            max=(max + min) / 2;;
-        } else {
-            l.log("Greater");
-            min=(max + min) / 2;;
-        }
+    public long askNextGuess() {
+        guess=min+((max-min)/2);
+        logger.log("guess send: "+guess);
+        return guess;
+    }
 
+    @Override
+    public void respond(boolean lowerOrGreater) {
+        if (lowerOrGreater) {
+            logger.log("greater");
+            this.min=this.guess;
+        } else {
+            logger.log("lower");
+            this.max=this.guess;
+        }
     }
 }
