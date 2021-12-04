@@ -28,7 +28,7 @@ public class Simulation {
         Long number = player.askNextGuess();
         if(number.equals(numberToGuess))
         {
-            logger.log("win"+numberToGuess);
+            logger.log("Congrats u win the Captain Age : "+numberToGuess);
             return true;
         }
         else
