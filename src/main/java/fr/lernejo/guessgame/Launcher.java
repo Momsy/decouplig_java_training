@@ -20,7 +20,7 @@ public class Launcher {
         }
         else if (args.length==2 && args[0].equals("-auto") && args[1].matches("[0-9]+"))
         {
-            //Player player = new ComputerPlayer();
+            Player player = new ComputerPlayer();
             Simulation s1 = new Simulation(player);
             SecureRandom random = new SecureRandom();
             long number=Long.parseLong(args[1]);
