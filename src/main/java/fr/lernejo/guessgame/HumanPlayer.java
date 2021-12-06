@@ -5,22 +5,24 @@ import fr.lernejo.logger.LoggerFactory;
 
 import java.util.Scanner;
 
-public class HumanPlayer implements Player{
-    Logger logger =  LoggerFactory.getLogger("player");
+public class HumanPlayer implements Player {
+    private Logger logger = LoggerFactory.getLogger("player");
+    private Scanner scanner = new Scanner(System.in);
 
     @Override
     public long askNextGuess() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("what's your guess");
-        return sc.nextLong();
+        logger.log("Write a number:");
+        long guess = scanner.nextLong();
+        logger.log("Guess send :"+ guess);
+        return guess;
     }
 
     @Override
     public void respond(boolean lowerOrGreater) {
-        if(lowerOrGreater)
-            logger.log("greater");
-        else
-            logger.log("lower");
-
+        if (lowerOrGreater) {
+            logger.log("The number is greater");
+        } else {
+            logger.log("The number is lower.");
+        }
     }
 }
